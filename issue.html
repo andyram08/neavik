@@ -95,7 +95,7 @@ function init() {
   directionalLight.position.set(-1, -0.5, 1);
   scene.add(directionalLight);
   
-  var bookup = new THREE.TextureLoader().load( "js/ice.jpg" );
+//  var bookup = new THREE.TextureLoader().load( "js/ice.jpg" );
   var cleanBookup = new THREE.MeshPhongMaterial({
 	map:bookup,
 	//color:16777200,
@@ -108,9 +108,9 @@ function init() {
    var onError = function ( xhr ) { };
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 				var mtl1Loader = new THREE.MTLLoader();
-				var lambert = new THREE.MeshLambertMaterial();
-				mtl1Loader.setBaseUrl( '' );
-				mtl1Loader.setPath( '' );
+	orb			var lambert = new THREE.MeshLambertMaterial();
+			//	mtl1Loader.setBaseUrl( '' );
+			//	mtl1Loader.setPath( '' );
 				mtl1Loader.load( 'Book_Cover.mtl', function( materials ) {
 				//	var merged = new THREE.Geometry();
 					materials.preload();
@@ -118,7 +118,7 @@ function init() {
 					var objLoader = new THREE.OBJLoader();
 					objLoader.setMaterials( materials );
 			//		hackMaterials(materials);
-					objLoader.setPath( 'neavik/' );
+				//	objLoader.setPath( '' );
 					objLoader.load( 'Book_Cover.obj', function ( object2 ) {
 						
                         object2.castShadow = true;
@@ -194,9 +194,9 @@ function init() {
 				light.position.set( 0.5, 1, 0.75 );
 				scene.add( light );
   // controls
-  controls = new THREE.OrbitControls(camera);
-  controls.target = new THREE.Vector3(0, 0, 0);
-  controls.update();
+//  controls = new THREE.OrbitControls(camera);
+//  controls.target = new THREE.Vector3(0, 0, 0);
+//  controls.update();
 
 
 }
