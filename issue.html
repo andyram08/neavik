@@ -15,9 +15,8 @@ body {
         <script src="DDSLoader.js"></script>
 		<script src="MTLLoader.js"></script>
 		<script src="OBJLoader.js"></script>
-		<script src="Detector.js"></script>
 	<script src="DDSLoader.js"></script>	
-	<script type="text/javascript" src="OrbitControls.js"></script>
+	<script type="text/javascript" src="orbitcontrols.js"></script>
 <script>
 // three.js info box follows shape
 var renderer, scene, camera;
@@ -110,8 +109,8 @@ function init() {
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 				var mtl1Loader = new THREE.MTLLoader();
 				var lambert = new THREE.MeshLambertMaterial();
-				mtl1Loader.setBaseUrl( 'neavik/' );
-				mtl1Loader.setPath( 'neavik/' );
+				mtl1Loader.setBaseUrl( '' );
+				mtl1Loader.setPath( '' );
 				mtl1Loader.load( 'Book_Cover.mtl', function( materials ) {
 				//	var merged = new THREE.Geometry();
 					materials.preload();
