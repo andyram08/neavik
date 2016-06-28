@@ -1,0 +1,216 @@
+<html>
+ <head>  
+  <style>      
+body {
+  background-color: #fff;
+  margin: 0px;
+  overflow: hidden;
+}
+</style>
+ </head>    
+
+<body>
+    <script src="js/three.js"></script>
+		
+        <script src="js/DDSLoader.js"></script>
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJLoader.js"></script>
+		<script src="js/Detector.js"></script>
+	<script src="js/DDSLoader.js"></script>	
+	<script type="text/javascript" src="js/OrbitControls.js"></script>
+<script>
+// three.js info box follows shape
+var renderer, scene, camera;
+current = 0;
+
+var Black = new THREE.MeshPhongMaterial({
+	color:0x000000,
+	combine: THREE.MixOperation,
+	specular: 0xfafafa,            //bbaa99,
+     shininess: 70,
+	 emissive:0x000000,
+	reflectivity:0.7
+	
+	
+})
+var White = new THREE.MeshPhongMaterial( {
+	
+			color:0xf6daa5,
+		//	specular: 0x000000,
+			
+			shininess: 0,
+		//	bumpMap: mapHeight,
+			bumpScale: 12,
+			emissive: null,
+			emissiveIntensity : null,
+		//	envMap: textureCube,
+		//	combine: THREE.MixOperation,
+			reflectivity: 0.1
+   } );
+
+   var cleanWhite = new THREE.MeshPhongMaterial({
+	
+	color:0xffffef,
+    specular:0x000000,
+	combine: THREE.AddOperation,
+	reflectivity:0
+})
+
+
+init();
+animate();
+
+function init() {
+  // info
+  var info = document.createElement('div');
+  info.style.position = 'absolute';
+  info.style.top = '30px';
+  info.style.width = '100%';
+  info.style.textAlign = 'center';
+  info.style.color = '#fff';
+  info.style.fontWeight = 'bold';
+  info.style.backgroundColor = 'transparent';
+  info.style.zIndex = '1';
+  info.style.fontFamily = 'Monospace';
+  info.innerHTML = "three.js - Material change: PRESS C to change colors";
+  document.body.appendChild(info);
+ // document.body.addEventListener('keyup', onMouseUp);
+
+  // renderer
+  renderer = new THREE.WebGLRenderer({
+    antialias: true
+  });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // scene
+  scene = new THREE.Scene();
+    
+  // ambient light
+  var ambient = new THREE.AmbientLight(0x404040);
+  scene.add(ambient);
+
+  // directional light
+  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(-1, -0.5, 1);
+  scene.add(directionalLight);
+  
+  var bookup = new THREE.TextureLoader().load( "js/ice.jpg" );
+  var cleanBookup = new THREE.MeshPhongMaterial({
+	map:bookup,
+	//color:16777200,
+    specular:0x000000,
+	combine: THREE.AddOperation,
+	reflectivity:0.4
+})
+  
+  
+   var onError = function ( xhr ) { };
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+				var mtl1Loader = new THREE.MTLLoader();
+				var lambert = new THREE.MeshLambertMaterial();
+				mtl1Loader.setBaseUrl( 'neavik/newmail/' );
+				mtl1Loader.setPath( 'neavik/newmail/' );
+				mtl1Loader.load( 'Book_Cover.mtl', function( materials ) {
+				//	var merged = new THREE.Geometry();
+					materials.preload();
+				//	materials.shininess = 30;
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+			//		hackMaterials(materials);
+					objLoader.setPath( 'neavik/newmail/' );
+					objLoader.load( 'Book_Cover.obj', function ( object2 ) {
+						
+                        object2.castShadow = true;
+                        object2.receiveShadow = true;
+						object2.updateMatrix();
+						object2.position.set(300,950,800);
+						object2.scale.x=object2.scale.y=0.8;
+						object2.frustumCulled=true;
+						 object2.traverse( function( child ) { if ( child instanceof THREE.Mesh ) {
+							
+									if (child.material.name == "Book_Cover")  {
+                                    //   child.material.visible=false;
+								//	child.material.color = new THREE.Color(16775930);
+                                  
+								//  child.material=cleanBookup;  // when i include this the effect onkey press wont change at all
+										child.castShadow = true;
+										child.receiveShadow = true;
+                                        
+                     ////////////IMPORTANT PART FROM HERE WHICH IS AN ISSUE//////                   
+                                        var index=0;
+						 
+									var onKeyDown = function(event) {
+							
+							
+                             
+						 if (event.keyCode == 67) { // when 'c' is pressed
+                     colors=[White,Black,cleanWhite];
+					//	for (var i=0;i<colors.length;i++) {
+	
+							object2.traverse( function( child ) { if ( child instanceof THREE.Mesh ) {
+									
+									if (child.material.name == "Book_Cover")  {
+									
+										if(index == colors.length) index = 0;
+										child.material=colors[index++];
+										child.material.needsUpdate=true;
+										child.geometry.buffersNeedUpdate = true;
+										child.geometry.uvsNeedUpdate = true;
+										
+									}
+                                    
+									} 
+									 
+							});
+							}
+						//  object.material.color.setHex(0xff0000); // there is also setHSV and setRGB
+						//	}
+							
+						 };
+                         document.addEventListener('keyup', onKeyDown, true);
+                         
+                                   }}
+                                   scene.add(object2);
+						
+						
+			
+						});
+					});				
+				})
+									
+					//	object2.updateMatrix();
+						
+						
+                        
+
+  // camera
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 5000);
+  camera.position.set(20, -10, 100);
+  camera.lookAt(scene.position);
+ // camera.up.set(0, 0, 1);
+
+ var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
+				light.position.set( 0.5, 1, 0.75 );
+				scene.add( light );
+  // controls
+  controls = new THREE.OrbitControls(camera);
+  controls.target = new THREE.Vector3(0, 0, 0);
+  controls.update();
+
+
+}
+
+// render
+function render() {
+  renderer.render(scene, camera);
+}
+
+// animate
+function animate() {
+  requestAnimationFrame(animate);
+  render();
+}
+</script></body>
+</html>
