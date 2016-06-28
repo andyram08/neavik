@@ -10,14 +10,14 @@ body {
  </head>    
 
 <body>
-    <script src="js/three.js"></script>
+    <script src="three.js"></script>
 		
-        <script src="js/DDSLoader.js"></script>
-		<script src="js/MTLLoader.js"></script>
-		<script src="js/OBJLoader.js"></script>
-		<script src="js/Detector.js"></script>
-	<script src="js/DDSLoader.js"></script>	
-	<script type="text/javascript" src="js/OrbitControls.js"></script>
+        <script src="DDSLoader.js"></script>
+		<script src="MTLLoader.js"></script>
+		<script src="OBJLoader.js"></script>
+		<script src="Detector.js"></script>
+	<script src="DDSLoader.js"></script>	
+	<script type="text/javascript" src="OrbitControls.js"></script>
 <script>
 // three.js info box follows shape
 var renderer, scene, camera;
@@ -110,8 +110,8 @@ function init() {
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 				var mtl1Loader = new THREE.MTLLoader();
 				var lambert = new THREE.MeshLambertMaterial();
-				mtl1Loader.setBaseUrl( 'neavik/newmail/' );
-				mtl1Loader.setPath( 'neavik/newmail/' );
+				mtl1Loader.setBaseUrl( 'neavik/' );
+				mtl1Loader.setPath( 'neavik/' );
 				mtl1Loader.load( 'Book_Cover.mtl', function( materials ) {
 				//	var merged = new THREE.Geometry();
 					materials.preload();
@@ -119,7 +119,7 @@ function init() {
 					var objLoader = new THREE.OBJLoader();
 					objLoader.setMaterials( materials );
 			//		hackMaterials(materials);
-					objLoader.setPath( 'neavik/newmail/' );
+					objLoader.setPath( 'neavik/' );
 					objLoader.load( 'Book_Cover.obj', function ( object2 ) {
 						
                         object2.castShadow = true;
