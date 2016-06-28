@@ -109,16 +109,13 @@ function init() {
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 				var mtl1Loader = new THREE.MTLLoader();
 				var lambert = new THREE.MeshLambertMaterial();
-			//	mtl1Loader.setBaseUrl( '' );
-			//	mtl1Loader.setPath( '' );
+				mtl1Loader.setBaseUrl( '' );
+				mtl1Loader.setPath( '' );
 				mtl1Loader.load( 'Book_Cover.mtl', function( materials ) {
-				//	var merged = new THREE.Geometry();
 					materials.preload();
-				//	materials.shininess = 30;
 					var objLoader = new THREE.OBJLoader();
 					objLoader.setMaterials( materials );
-			//		hackMaterials(materials);
-				//	objLoader.setPath( '' );
+					objLoader.setPath( '' );
 					objLoader.load( 'Book_Cover.obj', function ( object2 ) {
 						
                         object2.castShadow = true;
