@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Animation test</title>
+<style>
+
+</style>
+<script src="js/jquery-1.7.1.min.js"></script>
+<link rel="stylesheet" href="circlecss.css">
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $("#img1").css('height','215');
+  $("#img1").css('width','205');
+  $("#img2").css('height','245');
+  $("#img2").css('width','235');
+/*  $("#img3").css('height','95');
+  $("#img3").css('width','95');
+  $("#img4").css('height','95');
+  $("#img4").css('width','95');
+   $("#img5").css('height','95');
+  $("#img5").css('width','95'); */
+     
+    $("#img1").animate({left: "-=210", top: '+=60'}, 600,'linear');
+    $("#img2").animate({left: "+=180", top: '-=40'}, 600,'swing');
+    
+     //   $("#img1").fadeout("slow");
+    
+  //  $("#b").animate({left: "-=300" }, 1000);
+ 
+ /* for(var i=0;i<100;i++){
+      $("#img5").fadeTo("slow", 1);
+     
+      $("#img5").fadeTo("slow",0.5);
+     
+   
+  } */
+});
+
+</script>
+</head>
+
+<body>
+<div style="position:relative";>
+    <img id='img1' src="js/bluerup.png" style="position:absolute; top:200px; left: 550px; resize: both"></img> 
+    <img id="img2" src="js/reddy.png" style="position:absolute; top:200px; left: 550px; opacity:0.9; resize: both"></img>
+</div>
+<div class='info'>
+            <hgroup class='about'>
+                <h1>Approximated Price</h1>
+                <h2>INR 5100 / SQFT</h2>
+                <h3>+21 % increase in one year</h3>
+            </hgroup>
+            <nav class='more'>
+                <a target="_blank" href='link here'>know more </a>
+            </nav>
+        </div>
+  
+  <div class='info2'>
+            <hgroup class='about2'>
+                <h1>Current Price</h1>
+                <h2>INR 4800 / SQFT</h2>
+                <h3>since 60 days</h3>
+            </hgroup>
+            <nav class='more'>
+                
+                <a target="_blank" href='link here'>Know more</a>
+            </nav>
+        </div>
+<!--<<div class='info'>
+            <hgroup class='about'>
+                <h1>PROJECT AREA</h1>
+                <h2>34 ACRES</h2>
+                <h3>40% filled</h3>
+            </hgroup>
+            <nav class='more'>
+                <a target="_blank" href='link'>More Details</a>
+                
+            </nav>
+        </div>
+  
+  <div class='info1'>
+            <hgroup class='about1'>
+                <h1>PROJECT SIZE</h1>
+                
+				<h3>264 Units</h3>
+            </hgroup>
+            <nav class='more'>
+                 <a target="_blank" href='link'>More Details</a>
+            </nav>
+        </div>
+  <div class='info2'>
+            <hgroup class='about2'>
+                <h1>PRICE / SQFT</h1>
+                <h2>4800 INR</h2>
+                <h3>Touch or LEAP!</h3>
+            </hgroup>
+            <nav class='more'>
+                 <a target="_blank" href='link'>More Details</a>
+            </nav>
+        </div>
+  <div class='info3'>
+            <hgroup class='about3'>
+                <h1>CONFIGURATION</h1>
+                <h2>2, 3, 4: BHK</h2>
+                <h3>VILLAS</h3>
+            </hgroup>
+            <nav class='more'>
+                <a target="_blank" href='link'>More Details</a>
+            </nav>
+        </div>
+  <div class='info4'>
+            <hgroup class='about4'>
+                
+                <h3>Possession Started</h3>
+            </hgroup>
+        </div> -->
+</body>
+</html>
+
