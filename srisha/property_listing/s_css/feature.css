@@ -1,0 +1,80 @@
+#section-feature {
+	background-color: #f9f9f9;
+}
+
+.container.features {
+	padding-top: 132px;
+	padding-bottom: 190px;
+}
+
+.baraja-container {
+	width: 250px;
+	height: 400px;
+}
+
+.baraja-container .single-feature {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.single-feature .feature-title {
+	margin-top: 18px;
+}
+
+.single-feature .feature-text {
+	line-height: 1.5;
+	padding: 0 10px;
+	margin-bottom: 16px;
+}
+
+.baraja-container .single-feature:hover {
+	-webkit-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-moz-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-o-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+}
+
+.single-feature .feature-image {
+
+}
+
+
+.features-control {
+	margin: auto;
+	margin-top: 55px;
+	width: 253px;
+	z-index: 1020;
+}
+
+.control-icon {
+	position: absolute;
+	top:0;
+	padding: 5px 15px;
+	font-size: 20px;
+	height: 46px;
+}
+
+.feature-link a{
+	color:#fff;
+	font-weight: 400;
+}
+.feature-link a i {
+	font-weight: 300;
+}
+
+.features-control #feature-prev {
+	left: 0px;
+}
+
+.features-control #feature-expand {
+	left: 60px;
+}
+
+.features-control #feature-close {
+	left: 120px;
+}
+
+.features-control #feature-next {
+	left: 180px;
+}
+

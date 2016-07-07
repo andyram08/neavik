@@ -1,0 +1,445 @@
+/* ===========================
+
+Author: MH Rafi
+Website: http://themegret.com
+
+============================== */
+
+/* ==================== CSS Structure ==================== 
+1. COMMON STYLES
+	- Reset Styles
+	- Common Classes
+	- Pre Loader Styles
+	
+2. HTML ELEMENTS STYLE
+	- Button Styles
+
+3. HEADER SECTION
+	- Main Navigation Styles
+	- Home section
+	
+4. FEATURE SECTION
+5. SERVICE SECTION
+6. STEP SECTION
+7. Video SECTION
+
+8. SCREENSHOT SECTION
+	- ScreenShots hover effect style
+
+9. TESTIMONIAL SECTION
+10. PRICING SECTION
+	- Folding Effect
+
+11. SUBSCIBE SECTION
+12. DOWNLOAD SECTION
+13. CONTACT SECTION
+14. FOOTER SECTION
+========================================================== */
+
+
+/* --------------- Reset Styles --------------- */
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+ul, ol {
+	padding-left: 0 !important;
+}
+
+li {
+	list-style: none;
+}
+	
+.relative {
+	position:relative;
+}
+
+
+
+
+/* --------------- Pre Loader Styles --------------- */
+#preloader {
+	position:fixed;
+	top: 0;
+	left: 0;
+	background-color:#FFF;
+	width: 100%;
+	height: 100%;
+	z-index: 10050;
+}
+
+.loading-circle {
+	position: absolute;
+	left: 49%;
+	top: 49%;
+	height: 48px;
+	width: 48px;
+	border-radius: 50%;
+	border-top: 2px solid #7F8C8D;
+	border-right: 2px solid rgba(0,0,0, 0);
+	border-bottom: 2px solid #7F8C8D;
+	border-left: 2px solid rgba(0,0,0, 0);
+}
+
+/* =============== HTML element styles =============== */
+/* --------------- Button Styles --------------- */
+.button-line {
+	background: transparent;
+	display: inline-block;
+	font-weight: 400;
+	border-radius: 4px;
+	border: 1px solid;
+	margin: 10px;
+	overflow: visible;
+}
+
+.no-text .icon {
+	margin: 0;
+}
+
+.btn .icon {
+	margin-left: 13px;
+}
+
+.button-white {
+	border-color: #fff;
+	color: #fff;
+}
+
+.button-white:hover {
+	border-color: #fff;
+	color: #fff;
+}
+
+
+
+/* ================ Header Section ================ */
+
+/* ================ Features Section ================ */
+#section-feature {
+	
+}
+
+.container.features {
+	
+	padding-top: 20px;
+	padding-bottom: 190px;
+}
+
+.baraja-container {
+	width: 250px;
+	height: 400px;
+}
+
+.baraja-container .single-feature {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.single-feature .feature-title {
+	margin-top: 18px;
+}
+
+.single-feature .feature-text {
+	line-height: 1.5;
+	padding: 0 10px;
+	margin-bottom: 16px;
+}
+
+.baraja-container .single-feature:hover {
+	-webkit-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-moz-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-o-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+}
+
+.single-feature .feature-image {
+
+}
+
+
+.features-control {
+	margin: auto;
+	margin-top: 55px;
+	width: 253px;
+	z-index: 1020;
+}
+
+.control-icon {
+	position: absolute;
+	top:0;
+	padding: 5px 15px;
+	font-size: 20px;
+	height: 46px;
+}
+
+.feature-link a{
+	color:#fff;
+	font-weight: 400;
+}
+.feature-link a i {
+	font-weight: 300;
+}
+
+.features-control #feature-prev {
+	left: 0px;
+}
+
+.features-control #feature-expand {
+	left: 60px;
+}
+
+.features-control #feature-close {
+	left: 120px;
+}
+
+.features-control #feature-next {
+	left: 180px;
+}
+
+/* timeline */
+.wizard_horizontal ul.wizard_steps {
+  display: table;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  margin: 0 0 20px;
+  background: #fff;
+  margin-bottom: 25p;
+}
+.wizard_horizontal ul.wizard_steps li {
+  display: table-cell;
+  text-align: center;
+}
+.wizard_horizontal ul.wizard_steps li a, .wizard_horizontal ul.wizard_steps li:hover {
+  display: block;
+  position: relative;
+  -moz-opacity: 1;
+  filter: alpha(opacity: 100);
+  opacity: 1;
+  color: #666;
+}
+.wizard_horizontal ul.wizard_steps li a:before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  background: #ccc;
+  top: 28px;
+  width: 100%;
+  z-index: 4;
+  left: 0;
+}
+.wizard_horizontal ul.wizard_steps li a.disabled .step_no {
+  background: #ccc;
+}
+.wizard_horizontal ul.wizard_steps li a .step_no {
+  width: 60px;
+  height: 60px;
+  line-height: 40px;
+  border-radius: 100px;
+  display: block;
+  margin: 0 auto 5px;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+
+}
+.wizard_horizontal ul.wizard_steps li a.selected:before, .step_no {
+	padding-top: 10px;
+  background: #00adee;
+  color: #fff;
+}
+.wizard_horizontal ul.wizard_steps li a.done:before, .wizard_horizontal ul.wizard_steps li a.done .step_no {
+  background: #fff;
+  color: #fff;
+}
+.wizard_horizontal ul.wizard_steps li:first-child a:before {
+  left: 50%;
+}
+.wizard_horizontal ul.wizard_steps li:last-child a:before {
+  right: 50%;
+  width: 50%;
+  left: auto;
+}
+/* builder  */
+.builder-intro{
+
+}
+.builder-title{
+font-size: 20px;
+}
+.builder-logo{
+	padding-left: 25px;
+}
+.builder-details{
+ margin-top: 10px;
+ display: inline-block;
+ vertical-align: top;
+}
+
+.established{
+	display: inline-block;
+}
+.estb-year{
+	color: #000;
+	font-size: 14px;
+
+}
+.established{
+color:#7f7f7f;
+}
+.builder-contents p{
+	font-size: 15px;
+
+}
+.builder-contents{
+	padding-right: 25px;
+}
+/* end of builder */
+
+/* testinomials */
+#quote-carousel {
+    padding: 0 10px 30px 10px;
+    margin-top: 30px;
+    /* Control buttons  */
+    /* Previous button  */
+    /* Next button  */
+    /* Changes the position of the indicators */
+    /* Changes the color of the indicators */
+}
+#quote-carousel .carousel-control {
+    background: none;
+    color: #CACACA;
+    font-size: 2.3em;
+    text-shadow: none;
+    margin-top: 30px;
+}
+#quote-carousel .carousel-control.left {
+    left: -60px;
+}
+#quote-carousel .carousel-control.right {
+    right: -60px;
+}
+#quote-carousel .carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-right: -19px;
+}
+#quote-carousel .carousel-indicators li {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    border: 4px solid #CCC;
+    border-radius: 50px;
+    opacity: 0.4;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+#quote-carousel .carousel-indicators .active {
+    background: #333333;
+    width: 128px;
+    height: 128px;
+    border-radius: 100px;
+    border-color: #f33;
+    opacity: 1;
+    overflow: hidden;
+}
+.carousel-inner {
+    min-height: 300px;
+}
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+.contact-section {
+	padding: 80px 0 20px 0;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c1a618+0,f1c40f+25,f1c40f+75,c1a618+100 */
+	background: #fff ; /* Old browsers */
+	color: #000;
+
+}
+.contact-section hr {
+	background: #a9971c;
+}
+.contact-section h3 {
+	color: #000;
+	font-size: 20px;
+	font-weight: 400;
+}
+.contact-section form {
+	padding: 30px 0;
+}
+.contact-section .fa {
+	color: #000;
+	margin-bottom: 10px;
+}
+.contact-section .form-control {
+	display: block;
+	width: 100%;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+.contact-section .form-control:focus {
+	border-color: inherit;
+	outline: 0;
+	-webkit-box-shadow: transparent;
+	box-shadow: transparent;
+}
+.contact-section .social {
+	margin-top: 60px;
+}
+.contact-section .social ul li {
+	display: inline-block;
+	margin: 0 20px;
+}
+.contact-section .social i.fa {
+	font-size: 26px;
+	padding: 4px 5px;
+	color: #00adee;
+	transition: all 0.5s;
+}
+.contact-section .social i.fa:hover {
+	color: #032731;
+}
+.contact-section .btn {
+	background: transparent;
+	border: 2px solid #00adee;
+	border-radius: 4px;
+	padding: 6px 14px;
+	margin-top: 20px;
+	color: #000;
+	font-size: 16px;
+	transition: all 0.5s;
+}
+.contact-section .btn:hover, #contact-section .btn:focus {
+	background: #fef9e7;
+	border: 2px solid #fef9e7;
+	color: #5b777f;
+}
+.contact-section .text-danger {
+	color: #cc3300;
+	text-align: left;
+}
