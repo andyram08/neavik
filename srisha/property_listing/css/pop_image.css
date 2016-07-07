@@ -1,0 +1,201 @@
+
+/* Reset Styles */
+
+
+.pop2 { display: none }
+
+/*  popup box  */
+
+#popupBox {
+  background: #fff;
+  display: none;
+  border: 3px solid #ccc
+}
+
+#popupBox2,
+#popupBox3 {
+  background: #fff;
+  display: none;
+}
+
+#popupBox2 td,
+#popupBox3 td {
+  background: #fff;
+  padding: 0
+}
+
+#popupBox2 .popupContent { }
+
+.contentBox {
+  overflow-y: scroll;
+  height: 270px
+}
+
+.popupContent { background: #fff; }
+
+.popupContent .popClose {
+  float: right;
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: url(img/closeBut.jpg) no-repeat;
+  text-indent: -9000px
+}
+
+.popupClose {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 16px;
+  width: 16px;
+  text-indent: -9000px;
+  background: url(img/closeBut.jpg) no-repeat
+}
+
+.galleryTitle {
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.popupContent .pop2 {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 30px
+}
+
+.popupContent .galleryTitle { position: relative }
+
+.galleryControls {
+  overflow: hidden;
+  line-height: 40px
+}
+
+.galleryControls a {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  text-transform: uppercase
+}
+
+.galleryControls .prev {
+  float: left;
+  margin-left: 20px
+}
+
+.galleryControls .next {
+  float: right;
+  margin-right: 20px
+}
+
+.galleryControls p { text-align: center; }
+
+.imageDesc {
+  min-height: 50px;
+  line-height: 15px;
+  text-align: left
+}
+
+.imageDesc p {
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 12px
+}
+
+.popupBtns { padding: 20px }
+
+.popupBtns input {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+#fixedGallery .popupContent { background: #f3f3f3 }
+
+#fixedGallery .popupTL {
+  background: url(img/popupTL.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupTR {
+  background: url(img/popupTR.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupBL {
+  background: url(img/popupBL.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupBR {
+  background: url(img/popupBR.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupTM {
+  background: url(img/popupGT.png) repeat-x;
+  _background: none
+}
+
+#fixedGallery .popupBM {
+  background: url(img/popupGB.png) repeat-x;
+  _background: none
+}
+
+#fixedGallery .popupML {
+  background: url(img/popupGL.png) repeat-y;
+  _background: none
+}
+
+#fixedGallery .popupMR {
+  background: url(img/popupGR.png) repeat-y;
+  _background: none
+}
+
+#fixedGallery .popupTL div {
+  _background: url(img/popupTL.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupTR div {
+  _background: url(img/popupTR.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBL div {
+  _background: url(img/popupBL.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBR div {
+  _background: url(img/popupBR.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupTM div {
+  _background: url(img/popupGT.png) repeat-x;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBM div {
+  _background: url(img/popupGB.png) repeat-x;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupML div {
+  _background: url(img/popupGL.png) repeat-y;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupMR div {
+  _background: url(img/popupGR.png) repeat-y;
+  width: 100%;
+  height: 100%
+}
