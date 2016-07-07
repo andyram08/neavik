@@ -1,0 +1,189 @@
+.nav-header{
+      background-color: #00adee;
+      font-family: roboto;
+      color: #fff;
+
+    }
+    .nav-content{
+      font-family: roboto;
+      font-size: 24px;
+      font-weight: 300;
+      color: #FFF;
+    }
+    .nav-content-header{
+      font-family: roboto;
+      font-size: 30px;
+      font-weight: 400;
+      color: #FFF;
+    }
+    .entity{
+      font-family: roboto;
+      display: inline-block;
+      width: 49%;
+      margin-bottom: 40px;
+    }
+    .entity-left{
+      font-family: roboto;
+      font-size: 22px;
+      height: 40px;
+      line-height: 30px;
+      width: 35px;
+      text-align: left;
+    }
+    .entity-right{
+      font-family: roboto;
+      display: inline-block;
+    }
+    .entity-heading{
+      font-family: roboto;
+      font-size: 16px;
+      color: #7f7f7f
+    }
+    .entity-content,.amenities-content{
+      font-family: roboto;
+      font-size: 14px;
+      color: #333;
+    }
+    .nav-border{
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+    .nav-tabs> .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+      font-family: roboto;
+      background-color: transparent;
+      border:none;
+      color: #00adee;
+      transition: .3s ease;
+    }
+    .nav-tabs>li.active>a{
+       color: #00adee;
+      border:none;
+    }
+    .nav-tabs>li>a {
+      font-size: 18px;
+      font-family: roboto;
+      color: #bbb;
+      border-radius:0px;
+      margin-right: 0px;
+    }
+    .nav-tabs>li>a:hover {
+      font-family: roboto;
+      color: #00adee;
+      background-color: transparent;
+      border: none;
+      transition: .3s ease;
+    }
+    .page-header{
+      font-family: roboto;
+      font-weight: 400;
+    }
+    .h2,.h2,.h3,.h4,.h5,.p,.a,.form-group{
+      font-family: roboto;
+    }
+    .amenities{
+      margin-bottom: 25px;
+      font-family: roboto;
+      display: inline-block;
+      width: 32.9%;
+      font-size: 18px;
+
+    }
+    .description{
+      padding-left: 0px;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+    .project-overview{
+      padding-left: 20px;
+      background-color: #fff;
+    }
+    .configurations{
+      margin-top: 20px;
+      padding-left: 20px;
+      background-color: #fff;
+    }
+    .cofig-contents{
+      padding-left: 35px;
+      width: 82%;
+    }
+    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #00adee;
+    padding-right: 20px;
+   }
+
+   .responsive-circle {
+    background-color: #00adee;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 auto 20px;
+    width: 100%;
+     border-radius: 50%;
+    
+    }
+    .responsive-circle::after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 0;
+    margin-bottom: 20px;
+    padding-bottom: 100%;
+    width: 100%;
+    }
+    .responsive-circle div {
+    color: white;
+    float: left;
+    line-height: 1em;
+    margin-top: -0.5em;
+    padding-top: 50%;
+    text-align: center;
+    width: 100%;
+    }
+    .payment-content{
+      font-size: 18px;
+      font-family: roboto;
+
+    }
+
+    header {
+        position: relative;
+        width: 100%;
+        min-height: 80%;
+        text-align: center;
+        color: #fff;
+        height: 650px;
+       /* background-color: #00adee;*/
+        background-image: url(img/header.jpg);
+        background-position: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size:;
+        -o-background-size: cover;
+    }
+
+    header .header-content {
+        position: relative;
+        width: 100%;
+        padding: 100px 15px;
+        text-align: center;
+    }
+
+    header .header-content .header-content-inner h1 {
+        background-color: rgba(0,0,0,0.2);
+        margin-top: 0;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    header .header-content .header-content-inner hr {
+        margin: 30px auto;
+    }
+
+    header .header-content .header-content-inner p {
+        margin-bottom: 50px;
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255,255,255,.7);
+    }
