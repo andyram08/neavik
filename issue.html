@@ -24,6 +24,7 @@
         current = 0;
 
         var Black = new THREE.MeshPhongMaterial({
+            name:"Book_Cover",
             color: 0x000000,
             combine: THREE.MixOperation,
             specular: 0xfafafa, //bbaa99,
@@ -34,7 +35,7 @@
 
         })
         var White = new THREE.MeshPhongMaterial({
-
+            name:"Book_Cover",
             color: 0xf6daa5,
             //	specular: 0x000000,
 
@@ -49,7 +50,7 @@
         });
 
         var cleanWhite = new THREE.MeshPhongMaterial({
-
+            name:"Book_Cover",
             color: 0xffffef,
             specular: 0x000000,
             combine: THREE.AddOperation,
