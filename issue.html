@@ -30,7 +30,8 @@
             specular: 0xfafafa, //bbaa99,
             shininess: 70,
             emissive: 0x000000,
-            reflectivity: 0.7
+            reflectivity: 0.7,
+            name: "Book_Cover"
 
 
         })
@@ -46,7 +47,8 @@
             emissiveIntensity: null,
             //	envMap: textureCube,
             //	combine: THREE.MixOperation,
-            reflectivity: 0.1
+            reflectivity: 0.1,
+            name: "Book_Cover"
         });
 
         var cleanWhite = new THREE.MeshPhongMaterial({
@@ -54,7 +56,8 @@
             color: 0xffffef,
             specular: 0x000000,
             combine: THREE.AddOperation,
-            reflectivity: 0
+            reflectivity: 0,
+            name: "Book_Cover"
         })
 
 
