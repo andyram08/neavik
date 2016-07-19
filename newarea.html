@@ -1,0 +1,368 @@
+<html>
+ <head>  
+  <style>      
+body {
+  background-color: #fff;
+  margin: 0px;
+  overflow: hidden;
+}
+</style>
+ </head>    
+
+<body>
+    <script src="js/three.js"></script>
+		
+        <script src="js/DDSLoader.js"></script>
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJLoader.js"></script>
+		<script src="js/orbitcontrols.js"></script>
+	<script src="js/DDSLoader.js"></script>	
+	<script type="text/javascript" src="js/PointerLockControls.js"></script>
+	
+	<script id="vertex_shader" type="x-shader/x-vertex">
+
+#define NVERTS 4
+
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+
+void main() {
+
+	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+	vNormal = normalize( normalMatrix * normal );
+
+	vViewPosition = -mvPosition.xyz;
+
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+}
+
+</script>
+
+<script id="fragment_shader" type="x-shader/x-fragment">
+
+#define NVERTS 4
+
+uniform vec3 color;
+
+uniform vec3 lightColor;
+uniform float lightIntensity;
+uniform vec3 lightverts[ NVERTS ];	// in local space
+uniform mat4 lightMatrixWorld;
+
+varying vec3 vNormal;				// in camera space
+varying vec3 vViewPosition;			// in camera space
+
+void main() {
+
+	vec3 normal = normalize( vNormal );
+
+	vec4 lPosition[ NVERTS ];
+
+	vec3 lVector[ NVERTS ];
+
+	// stub in some ambient reflectance
+
+	vec3 ambient = color * vec3( 0.2 );
+
+	// direction vectors from point to area light corners
+
+	for( int i = 0; i < NVERTS; i ++ ) {
+
+		lPosition[ i ] = viewMatrix * lightMatrixWorld * vec4( lightverts[ i ], 1.0 ); // in camera space
+
+		lVector[ i ] = normalize( lPosition[ i ].xyz + vViewPosition.xyz ); // dir from vertex to areaLight
+
+	}
+
+	// bail if the point is on the wrong side of the light... there must be a better way...
+
+	float tmp = dot( lVector[ 0 ], cross( ( lPosition[ 2 ] - lPosition[ 0 ] ).xyz, ( lPosition[ 1 ] - lPosition[ 0 ] ).xyz ) );
+
+	if ( tmp > 0.0 ) {
+
+		gl_FragColor = vec4( ambient, 1.0 );
+		return;
+
+	}
+
+	// vector irradiance at point
+
+	vec3 lightVec = vec3( 0.0 );
+
+	for( int i = 0; i < NVERTS; i ++ ) {
+
+		vec3 v0 = lVector[ i ];
+		vec3 v1 = lVector[ int( mod( float( i + 1 ), float( NVERTS ) ) ) ]; // ugh...
+
+		lightVec += acos( dot( v0, v1 ) ) * normalize( cross( v0, v1 ) );
+
+	}
+
+	// irradiance factor at point
+
+	float factor = max( dot( lightVec, normal ), 0.0 ) / ( 2.0 * 3.14159265 );
+
+	// frag color
+
+	vec3 diffuse = color * lightColor * lightIntensity * factor;
+
+	gl_FragColor = vec4( ambient + diffuse, 1.0 );
+
+}
+
+</script>
+<script>
+// three.js info box follows shape
+var renderer, scene, camera;
+current = 0;
+var time = Date.now();
+ var bookin = new THREE.TextureLoader().load( "js/bluerup.png" );
+var Black = new THREE.MeshPhongMaterial({
+	name:"Book_Cover",
+	map:bookin,
+	color:0x0ffee0,
+	combine: THREE.MixOperation,
+	specular: 0xfafafa,            //bbaa99,
+     shininess: 70,
+	 emissive:0x000000,
+	reflectivity:0.7
+	
+	
+})
+var White = new THREE.MeshPhongMaterial( {
+		   name:"Book_Cover",
+			color:0xf6eee5,
+		//	specular: 0x000000,
+			
+			shininess: 0,
+		//	bumpMap: mapHeight,
+			bumpScale: 12,
+			emissive: null,
+			emissiveIntensity : null,
+		//	envMap: textureCube,
+		//	combine: THREE.MixOperation,
+			reflectivity: 0.1
+   } );
+
+   var cleanWhite = new THREE.MeshStandardMaterial({
+	name:"Book_Cover",
+	color:0xffffef,
+    specular:0x000000,
+	combine: THREE.AddOperation,
+	reflectivity:0
+})
+
+
+	var areaLight;
+	
+	
+	
+init();
+//animate();
+
+function init() {
+  // info
+ var renderer, scene, camera, controls;
+var areaLight, material, mesh;
+var t = 0, delta = 0.004;
+
+init();
+animate();
+
+function init() {
+
+	// info
+	info = document.createElement( 'div' );
+	info.style.position = 'absolute';
+	info.style.top = '30px';
+	info.style.width = '100%';
+	info.style.textAlign = 'center';
+	info.style.color = '#fff';
+	info.style.fontWeight = 'bold';
+	info.style.backgroundColor = 'transparent';
+	info.style.zIndex = '1';
+	info.style.fontFamily = 'Monospace';
+	info.innerHTML = 'Drag mouse to rotate camera; scroll to zoom';
+	document.body.appendChild( info );
+
+	// renderer
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.physicallyBasedShading = true;
+	document.body.appendChild( renderer.domElement );
+
+	// scene
+	scene = new THREE.Scene();
+	
+	// camera
+	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.set( 70, 20, 150 );
+
+	// controls
+	controls = new THREE.OrbitControls( camera );
+
+	// axes
+	scene.add( new THREE.AxisHelper( 200 ) );
+
+	// area light
+	var lightColor = 0xffffff;
+	var lightIntensity = 1;
+
+	var geometry = new THREE.PlaneGeometry( 100, 50 );
+
+	var material = new THREE.MeshBasicMaterial( { 
+        color: lightColor, transparent: true, opacity: 0.7, side: THREE.FrontSide } );
+
+	areaLight = new THREE.Mesh( geometry, material );
+    
+ 	areaLight.position.set( 0, 25, -25 );
+	areaLight.rotation.set( 0, 0, 0 );
+	areaLight.scale.set( 1, 1, 1 );
+	scene.add( areaLight );
+
+	
+	var Black= new THREE.MeshPhongMaterial({
+	color:0x000000,
+	
+	
+	})
+    // wireframe hack
+    areaLight.add( new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { wireframe: true } ) ) );
+
+	// areaLight verts
+	var vertices = areaLight.geometry.vertices;
+	var verts = [];
+	verts.push( vertices[ 0 ] );
+	verts.push( vertices[ 1 ] );
+	verts.push( vertices[ 3 ] ); // swap 2 & 3; must be in clockwise order; they are not
+	verts.push( vertices[ 2 ] );
+
+	// uniforms
+	var uniforms = {
+		color: { type: "c", value: new THREE.Color( 0xaaaadd ) },
+
+		lightColor: { type: "c", value: areaLight.material.color },
+		lightIntensity: { type: "f", value: lightIntensity },
+		lightverts: { type: "v3v", value: verts },
+		lightMatrixWorld: { type: "m4", value: areaLight.matrixWorld }
+	};
+
+	// attributes
+	var attributes = {
+	};
+
+	// material
+	var material = new THREE.ShaderMaterial( {
+		attributes      : attributes,
+		uniforms        : uniforms,
+		vertexShader    : document.getElementById( 'vertex_shader' ).textContent,
+		fragmentShader  : document.getElementById( 'fragment_shader' ).textContent,
+		shading			: THREE.SmoothShading
+	} );
+	
+	
+	var onError = function ( xhr ) { };
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+				var mtl1Loader = new THREE.MTLLoader();
+			//	var lambert = new THREE.MeshLambertMaterial(manager);
+				mtl1Loader.setBaseUrl( 'neavik/newmail/' );
+				mtl1Loader.setPath( 'neavik/newmail/' );
+				mtl1Loader.load( 'chandelier.mtl', function( materials ) {
+				//	var merged = new THREE.Geometry();
+					materials.preload();
+				//	materials.shininess = 30;
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+			//		hackMaterials(materials);
+					objLoader.setPath( 'neavik/newmail/' );
+					objLoader.load( 'chandelier.obj', function ( object4 ) {
+						
+                        object4.castShadow = true;
+                        object4.receiveShadow = true;
+						object4.updateMatrix();
+						object4.position.set(40,28,40); //(0,-5,0.5);
+						object4.scale.x=0.09;
+                        object4.scale.y=0.05;
+                        object4.scale.z=0.09
+						
+						
+					
+						var mats = [];
+						mats.push(new THREE.MeshPhongMaterial({color:0x000000}));
+						mats.push(material);
+						 var faceMaterial = new THREE.MeshFaceMaterial(mats);
+						object4.frustumCulled=true;
+						 object4.traverse( function( child ) { if ( child instanceof THREE.Mesh ) {
+							if (child.material.name == "chandelier_Outside")  {
+                                    //   child.material.visible=false
+                                        child.material = Black;
+										child.castShadow = true;
+										child.receiveShadow = true;
+									}
+									
+                                    
+						}
+					//	object2.updateMatrix();
+						
+			
+						});
+						 scene.add(object4);
+					});				
+				})
+    
+	// plane geometry
+	var geometry = new THREE.PlaneGeometry( 200, 200 );
+	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+
+	// plane
+	mesh = new THREE.Mesh( geometry, material );
+	mesh.position.y = - 0.1;
+	scene.add( mesh );
+
+	// torus knot
+	var geometry = new THREE.TorusKnotGeometry( 10, 4, 256, 32, 1, 3, 1 );
+
+	// mesh
+	mesh = new THREE.Mesh( geometry, material );
+	mesh.position.set( 0, 28, 0 );
+	scene.add( mesh );
+
+}
+
+function animate() {
+
+	requestAnimationFrame( animate );
+    
+	areaLight.position.set( 0, 25 * Math.sin( t ), Math.min( - 25 * Math.cos( t ), 0 ) );
+	areaLight.rotation.set( Math.min( t, Math.PI / 2 ), 0, 0 );
+
+	t += delta;
+	if ( t > 4.4 || t < 0 ) delta = - delta;
+
+	controls.update();
+
+	renderer.render( scene, camera );
+
+}
+
+
+}
+
+// render
+/*function render() {
+  renderer.render(scene, camera);
+}
+
+// animate
+
+function animate() {
+ var delta = (Date.now() - time) * 2;
+	controls.update(delta);
+  requestAnimationFrame(animate);
+  render();
+  time = Date.now();
+}*/
+</script></body>
+</html>
