@@ -10,16 +10,13 @@ body {
  </head>    
 
 <body>
-    <script src="js/three.js"></script>
-		
-        <script src="js/DDSLoader.js"></script>
-		<script src="js/MTLLoader.js"></script>
-		<script src="js/OBJLoader.js"></script>
-		<script src="js/orbitcontrols.js"></script>
-	<script src="js/DDSLoader.js"></script>	
-	<script type="text/javascript" src="js/PointerLockControls.js"></script>
+    <script src="three.js"></script>
+     <script src="DDSLoader.js"></script>
+     <script src="MTLLoader.js"></script>
+     <script src="OBJLoader.js"></script>
+     <script src="orbitcontrols.js"></script>
 	
-	<script id="vertex_shader" type="x-shader/x-vertex">
+     <script id="vertex_shader" type="x-shader/x-vertex">
 
 #define NVERTS 4
 
@@ -155,7 +152,7 @@ var White = new THREE.MeshPhongMaterial( {
 })
 
 
-	var areaLight;
+
 	
 	
 	
@@ -266,17 +263,13 @@ function init() {
 	var onError = function ( xhr ) { };
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 				var mtl1Loader = new THREE.MTLLoader();
-			//	var lambert = new THREE.MeshLambertMaterial(manager);
-				mtl1Loader.setBaseUrl( 'neavik/newmail/' );
-				mtl1Loader.setPath( 'neavik/newmail/' );
+				mtl1Loader.setBaseUrl( '' );
+				mtl1Loader.setPath( '' );
 				mtl1Loader.load( 'chandelier.mtl', function( materials ) {
-				//	var merged = new THREE.Geometry();
 					materials.preload();
-				//	materials.shininess = 30;
 					var objLoader = new THREE.OBJLoader();
 					objLoader.setMaterials( materials );
-			//		hackMaterials(materials);
-					objLoader.setPath( 'neavik/newmail/' );
+					objLoader.setPath( '' );
 					objLoader.load( 'chandelier.obj', function ( object4 ) {
 						
                         object4.castShadow = true;
@@ -296,7 +289,7 @@ function init() {
 						object4.frustumCulled=true;
 						 object4.traverse( function( child ) { if ( child instanceof THREE.Mesh ) {
 							if (child.material.name == "chandelier_Outside")  {
-                                    //   child.material.visible=false
+                                   
                                         child.material = Black;
 										child.castShadow = true;
 										child.receiveShadow = true;
@@ -304,8 +297,7 @@ function init() {
 									
                                     
 						}
-					//	object2.updateMatrix();
-						
+				
 			
 						});
 						 scene.add(object4);
@@ -350,19 +342,5 @@ function animate() {
 
 }
 
-// render
-/*function render() {
-  renderer.render(scene, camera);
-}
-
-// animate
-
-function animate() {
- var delta = (Date.now() - time) * 2;
-	controls.update(delta);
-  requestAnimationFrame(animate);
-  render();
-  time = Date.now();
-}*/
 </script></body>
 </html>
